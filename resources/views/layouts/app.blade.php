@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Library Borrowing System')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         :root {
             --purple-50: #EEEDFE;
@@ -51,5 +52,33 @@
 
         @yield('content')
     </div>
+    <script>
+    document.querySelectorAll('form.delete-form').forEach((form) => {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const itemName = form.dataset.itemName || 'this item';
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: `You are about to delete ${itemName}. This cannot be undone!`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#534AB7',
+                cancelButtonColor: '#AFA9EC',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Deleted!',
+                        text: `${itemName} has been deleted.`,
+                        icon: 'success',
+                        confirmButtonColor: '#534AB7',
+                    }).then(() => form.submit());
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

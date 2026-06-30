@@ -23,8 +23,7 @@
                     <td>{{ $category->description }}</td>
                     <td class="text-end">
                         <a href="{{ route('categories.edit', $category) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
-                        <form action="{{ route('categories.destroy', $category) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this category?')">
-                            @csrf
+                        <form action="{{ route('members.destroy', $member) }}" method="POST" class="d-inline delete-form" data-item-name="{{ $member->name }}">
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                         </form>

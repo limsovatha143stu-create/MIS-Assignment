@@ -27,7 +27,7 @@
                     <td>{{ $book->available_copies }} / {{ $book->total_copies }}</td>
                     <td class="text-end">
                         <a href="{{ route('books.edit', $book) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
-                        <form action="{{ route('books.destroy', $book) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this book?')">
+                       <form action="{{ route('members.destroy', $member) }}" method="POST" class="d-inline delete-form" data-item-name="{{ $member->name }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
